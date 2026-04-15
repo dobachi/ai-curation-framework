@@ -1,0 +1,156 @@
+# サンプル: トピック設定
+#
+# 使い方:
+#   cp config/topics.yml.example config/topics.yml
+#   # config/topics.yml を編集して自分の興味分野に書き換え
+#
+# カテゴリ:
+#   - core: 毎回必ず扱う（日次/週次などの「キュレーション1回」で1件以上含める）
+#   - domain: ドメイン別（ローテーションで扱う）
+#   - region: 地域別（ローテーション）
+#   - cross: 横断テーマ（ローテーション）
+#   - academic: 学術研究（ローテーション）
+# いずれもユーザーが自由に追加・削除できます。`rotation` セクションで何件ずつ取るかを定義。
+
+topics:
+  # === コア（毎回優先） ===
+  - name: "LLM と基盤モデル"
+    category: core
+    description: "大規模言語モデル、マルチモーダルモデル等の技術動向・リリース情報"
+    keywords:
+      - "LLM"
+      - "foundation model"
+      - "transformer"
+      - "Claude"
+      - "GPT"
+      - "Gemini"
+      - "open-weight"
+
+  - name: "AI エージェント"
+    category: core
+    description: "自律的タスク実行型 AI、ツール使用、マルチエージェント連携"
+    keywords:
+      - "AI agent"
+      - "autonomous agent"
+      - "tool use"
+      - "multi-agent"
+      - "agentic workflow"
+
+  # === ドメイン別 ===
+  - name: "ソフトウェア開発ツール"
+    category: domain
+    description: "AI を活用した開発ツール、IDE、コパイロット等"
+    keywords:
+      - "developer tools"
+      - "code assistant"
+      - "IDE"
+      - "Copilot"
+      - "MCP"
+
+  - name: "ヘルスケアと AI"
+    category: domain
+    description: "医療分野での AI 活用、診断支援、創薬等"
+    keywords:
+      - "healthcare AI"
+      - "medical AI"
+      - "drug discovery"
+      - "clinical AI"
+
+  - name: "ロボティクス"
+    category: domain
+    description: "ヒューマノイド、産業用ロボット、自動運転等のロボティクス全般"
+    keywords:
+      - "robotics"
+      - "humanoid"
+      - "autonomous driving"
+      - "industrial robot"
+
+  # === 地域別 ===
+  - name: "日本のテック動向"
+    category: region
+    description: "日本国内の AI・ディープテック企業、政策、研究"
+    keywords:
+      - "日本 AI"
+      - "Japan AI"
+      - "国内スタートアップ"
+
+  - name: "アジアのテック動向"
+    category: region
+    description: "中国・韓国・インド・東南アジアの AI・テック動向"
+    keywords:
+      - "China AI"
+      - "Asia tech"
+      - "India AI"
+      - "ASEAN"
+
+  # === 横断テーマ ===
+  - name: "AI 規制・ガバナンス"
+    category: cross
+    description: "EU AI Act、各国の AI 規制、倫理ガイドライン等"
+    keywords:
+      - "AI regulation"
+      - "AI Act"
+      - "AI governance"
+      - "AI ethics"
+
+  - name: "プライバシーとセキュリティ"
+    category: cross
+    description: "AI 時代のプライバシー保護、セキュリティ、ディープフェイク対策"
+    keywords:
+      - "AI privacy"
+      - "AI security"
+      - "deepfake"
+      - "differential privacy"
+
+  # === 学術研究 ===
+  - name: "機械学習の基礎研究"
+    category: academic
+    description: "ICML/NeurIPS/ICLR 等の学会発表、arXiv 最新論文"
+    keywords:
+      - "ICML"
+      - "NeurIPS"
+      - "ICLR"
+      - "arXiv"
+      - "machine learning research"
+
+  - name: "AI アライメント研究"
+    category: academic
+    description: "安全性、解釈可能性、RLHF 等のアライメント分野"
+    keywords:
+      - "AI alignment"
+      - "interpretability"
+      - "RLHF"
+      - "AI safety"
+
+# セレンディピティ設定（オプション）
+# コアトピックとは異なる分野の知見で、意外な示唆を得るための枠。
+# enabled: true にすると rotation.daily_topics に1枠追加されます。
+serendipity:
+  enabled: true
+  description: |
+    コアトピックとは異なる分野・文脈からの知見で、AI・テック全般に意外な示唆を与えるもの。
+    「探していなかったが、出会ってみたら価値があった」体験を目指す。
+
+    【重要】コアトピックの隣接領域や別の側面を取り上げるだけでは不十分。
+    全く別の分野の知見が、AI やテクノロジーの課題に構造的に通じている、
+    という「意外な接続」が本質。
+
+    良い例:
+    - 生態学のネットワーク分析が、マルチエージェント協調の設計に示唆を与える
+    - 医療のインフォームドコンセントの仕組みが、AI の説明責任設計に応用可能
+    - 歴史上の技術標準化（鉄道の軌間統一等）が、現代の API 標準化問題と構造的に同じ
+
+    悪い例（これはセレンディピティではない）:
+    - LLM の別のモデル紹介 → ただの追加情報
+    - AI 規制の別の国の動向 → 横断テーマ（cross）で扱うべき
+
+# ローテーション設定
+rotation:
+  # 1回のキュレーションで生成する議題数
+  daily_topics: 4
+  rules:
+    - "毎回1件は core カテゴリから選ぶ"
+    - "1件は domain / region / cross カテゴリから日替わりで選ぶ"
+    - "1件は academic カテゴリから日替わりで選ぶ"
+    - "1件はセレンディピティ枠（全トピックから意外な話題）"
+    - "同じトピックが連続しないようバランスを取る"

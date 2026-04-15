@@ -1,0 +1,19 @@
+# Curation Pipeline - cron entries (Ubuntu)
+#
+# 手動導入する場合は crontab -e でこの内容を追加してください。
+# 自動導入は install-cron.sh を使います。
+#
+# 注意:
+# - REPO パスを実環境に合わせて書き換えること
+# - PATH を明示してください（claude CLI が見つからない場合）
+
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/USER/.local/bin
+
+# JST 03:30 (Phase 1: リサーチ)
+30 3 * * * /bin/bash /home/USER/Sources/curation-reports/local-runner/run-phase.sh 1
+
+# JST 04:30 (Phase 2: 執筆)
+30 4 * * * /bin/bash /home/USER/Sources/curation-reports/local-runner/run-phase.sh 2
+
+# JST 05:30 (Phase 3: ファクトチェック + マージ)
+30 5 * * * /bin/bash /home/USER/Sources/curation-reports/local-runner/run-phase.sh 3

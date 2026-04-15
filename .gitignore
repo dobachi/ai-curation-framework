@@ -1,0 +1,28 @@
+# 一時作業ディレクトリ（Phase 間で使用するが commit 対象外）
+workspace/
+
+# ユーザー固有の config（example からコピーして自分用に編集する）
+config/topics.yml
+
+# 環境変数ファイル（絶対に commit しない）
+*.env
+.env
+!env.example
+!env.example.ps1
+
+# ログ（通常ローカルに出るが、念のため除外）
+*.log
+logs/
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+*.swp
+*~
+.idea/
+.vscode/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class

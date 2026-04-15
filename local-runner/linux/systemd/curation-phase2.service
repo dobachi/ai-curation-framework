@@ -1,0 +1,9 @@
+[Unit]
+Description=Curation Phase 2 (Write)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+EnvironmentFile=-%h/.config/curation/runner.env
+ExecStart=/bin/bash {{RUN_PHASE}} 2

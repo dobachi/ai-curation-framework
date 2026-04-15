@@ -1,0 +1,10 @@
+[Unit]
+Description=Curation Phase 2 (JST 04:30)
+
+[Timer]
+OnCalendar=*-*-* 04:30:00 Asia/Tokyo
+Persistent=true
+RandomizedDelaySec=60
+
+[Install]
+WantedBy=timers.target

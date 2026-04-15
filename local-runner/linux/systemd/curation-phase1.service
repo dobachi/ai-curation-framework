@@ -1,0 +1,10 @@
+[Unit]
+Description=Curation Phase 1 (Research)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+EnvironmentFile=-%h/.config/curation/runner.env
+ExecStart=/bin/bash {{RUN_PHASE}} 1
+# install-systemd.sh がインストール時に {{RUN_PHASE}} を絶対パスに置換します
