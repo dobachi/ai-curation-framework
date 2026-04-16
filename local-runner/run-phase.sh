@@ -42,7 +42,7 @@ if [ ! -d "$REPO/.git" ]; then
   exit 3
 fi
 
-if [ -z "$(git config user.name)" ] || [ -z "$(git config user.email)" ]; then
+if [ -z "$(git -C "$REPO" config user.name)" ] || [ -z "$(git -C "$REPO" config user.email)" ]; then
   echo "ERROR: git user.name / user.email が未設定です。リポジトリで以下を実行してください:" >&2
   echo "  cd $REPO" >&2
   echo "  git config user.name \"YOUR_NAME\"" >&2
