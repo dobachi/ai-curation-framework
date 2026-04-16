@@ -42,6 +42,13 @@ if [ ! -d "$REPO/.git" ]; then
   exit 3
 fi
 
+if [ -z "$(git config user.name)" ] || [ -z "$(git config user.email)" ]; then
+  echo "ERROR: git user.name / user.email が未設定です。以下を実行してください:" >&2
+  echo "  git config --global user.name \"YOUR_NAME\"" >&2
+  echo "  git config --global user.email \"YOUR_EMAIL\"" >&2
+  exit 3
+fi
+
 # ログ準備
 mkdir -p "$LOG_DIR"
 DATE=$(date +%Y-%m-%d)
